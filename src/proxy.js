@@ -108,7 +108,7 @@ async function proxy(request) {
 				: url.startsWith('/')
 				? `${baseUrl.protocol}//${baseUrl.host}${url}`
 				: `${basePath}${url}`;
-			return `URI="${new URL(request.url).origin}/proxy?url=${encodeURIComponent(btoa(fullUrl))}&headers=${encodeURIComponent(
+			return `URI="${new URL(request.url).origin}/hls/${encodeURIComponent(btoa(fullUrl))}&headers=${encodeURIComponent(
 				headersBase64
 			)}"`;
 		});
@@ -119,7 +119,7 @@ async function proxy(request) {
 				: match.startsWith('/')
 				? `${baseUrl.protocol}//${baseUrl.host}${match}`
 				: `${basePath}${match}`;
-			return `${new URL(request.url).origin}/proxy?url=${encodeURIComponent(btoa(fullUrl))}&headers=${encodeURIComponent(headersBase64)}`;
+			return `${new URL(request.url).origin}/hls/${encodeURIComponent(btoa(fullUrl))}&headers=${encodeURIComponent(headersBase64)}`;
 		});
 
 		return new Response(modifiedBody, {
